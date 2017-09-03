@@ -17,7 +17,12 @@
     "max-len": ["error", 200, 2, { "ignoreUrls": true }],
     "no-param-reassign": [2, { "props": false }],
     "no-empty": ["error", { "allowEmptyCatch": true }],
-    "no-mixed-operators": ["error", { "allowSamePrecedence": true }]
+    "no-mixed-operators": ["error", { "allowSamePrecedence": true }],
+
+    "react/jsx-boolean-value": [1, "always"],
+    "react/prop-types": 0,
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
   "parserOptions": {
     "ecmaVersion": 6,

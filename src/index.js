@@ -1,37 +1,38 @@
-import 'babel-polyfill';
-import express from 'express';
-import dotenv from 'dotenv';
-import path from 'path';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import compression from 'compression';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
 
-dotenv.config();
+import rootReducer from './redux/reducers'; // All redux reducers (rolled into one mega-reducer)
+import TasksContainer from './views/Tasks';
 
-const app = express();
+// middleware that logs actions
+const loggerMiddleware = createLogger({ predicate: () => process.env.NODE_ENV !== 'prod', collapsed: true });
 
-app.set('port', (process.env.PORT || 5000));
+function configureStore(initialState) {
+  const enhancer = compose(
+    applyMiddleware(
+      thunk, // lets us dispatch() functions
+      loggerMiddleware
+    ),
+  );
+  return createStore(rootReducer, initialState, enhancer);
+}
 
-// Compression
-app.use(compression());
+const store = configureStore({});
 
-// CORS Middleware
-app.use(cors());
+const RootContainer = () => (
+  <Provider store={store}>
+    <TasksContainer />
+  </Provider>
+);
 
-// Body Parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const mountNode = document.createElement('div');
+document.body.appendChild(mountNode);
 
-app.use(express.static(path.join(__dirname, '/public')));
-
-// views is directory for all template files
-app.set('views', path.join(__dirname, '/views'));
-app.set('view engine', 'ejs');
-
-app.get('/', (request, response) => {
-  response.render('pages/index');
-});
-
-app.listen(app.get('port'), () => {
-  console.log('Node app is running on port', app.get('port'));
-});
+ReactDOM.render(
+  <RootContainer />,
+  mountNode
+);
