@@ -8,6 +8,7 @@ const styles = {
     '.task-input': {
       flex: 1,
       border: 0,
+      outline: 'none',
       background: 'none',
       fontSize: '16px',
       fontFamily: 'Montserrat',
