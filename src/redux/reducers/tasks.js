@@ -7,22 +7,22 @@ export const initialState = [];
 export default function taskReducer(state = initialState, action) {
   switch (action.type) {
     case types.CREATE_TASK: {
-      const text = action.text;
+      const { text, createdAt } = action;
       return [
-        { id: uuidv4(), text },
+        { id: uuidv4(), text, createdAt },
         ...state
       ];
     }
     case types.UPDATE_TASK: {
-      const id = action.id;
-      const text = action.text;
+      const { id, text, updatedAt } = action;
       const taskIndex = state.findIndex(item => item.id === id);
       if (taskIndex < 0) {
         return state;
       }
+      const task = state[taskIndex];
       return [
         ...state.slice(0, taskIndex),
-        { id, text },
+        { ...task, text, updatedAt },
         ...state.slice(taskIndex + 1)
       ];
     }

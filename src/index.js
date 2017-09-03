@@ -9,7 +9,7 @@ import rootReducer from './redux/reducers'; // All redux reducers (rolled into o
 import TasksContainer from './views/Tasks';
 
 // middleware that logs actions
-const loggerMiddleware = createLogger({ predicate: () => process.env.NODE_ENV !== 'prod', collapsed: true });
+const loggerMiddleware = createLogger({ predicate: () => process.env.NODE_ENV !== 'production', collapsed: true });
 
 function configureStore(initialState) {
   const enhancer = compose(
