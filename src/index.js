@@ -4,6 +4,8 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
+import { offline } from 'redux-offline';
+import offlineConfig from 'redux-offline/lib/defaults';
 
 import rootReducer from './redux/reducers'; // All redux reducers (rolled into one mega-reducer)
 import TasksContainer from './views/Tasks';
@@ -17,6 +19,7 @@ function configureStore(initialState) {
       thunk, // lets us dispatch() functions
       loggerMiddleware
     ),
+    offline(offlineConfig)
   );
   return createStore(rootReducer, initialState, enhancer);
 }

@@ -21,10 +21,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname, 'public', 'index.html'));
+  response.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(app.get('port'), () => {
