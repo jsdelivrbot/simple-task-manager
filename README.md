@@ -1,5 +1,7 @@
 # simple-task-manager
 
+Hosted on heroku over [here](https://simple-todo-2313.herokuapp.com/)
+
 ### Running the project
 
 #### Install dependencies
