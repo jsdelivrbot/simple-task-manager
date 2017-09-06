@@ -14,6 +14,7 @@ yarn
 
 ```sh
 npm start
+# Open http://localhost:9000/
 ```
 
 #### Running production version
@@ -21,7 +22,7 @@ npm start
 ```sh
 npm run build
 npm run serve
-# Open http://localhost:5000
+# Open http://localhost:5000/
 ```
 
 #### Documentation
