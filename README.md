@@ -53,4 +53,4 @@ state: {
     - id
 
 #### Persistence
-[Redux offline](https://github.com/jevakallio/redux-offline) is which store entire redux javascript object state to browser's localstorage and repopulates on app startup.
+[Redux offline](https://github.com/jevakallio/redux-offline) is used to store entire redux javascript object state to browser's localstorage and is repopulated on app startup.
